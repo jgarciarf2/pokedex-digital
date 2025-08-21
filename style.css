@@ -30,20 +30,16 @@ body {
   color: #bfa100;
 }
 
-.busqueda {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 32px;
-}
-
 .card-container {
   display: flex;
   flex-direction: column;
   gap: 24px;
   justify-content: center;
   width: 100%;
-  min-width: 400px;
+  box-shadow: 0 2px 8px rgba(59, 76, 202, 0.2);
+  background: #fff;
+  border-radius: 14px;
+  padding-bottom: 20px;
 }
 
 .title-card {
@@ -53,6 +49,8 @@ body {
   padding: 20px;
   text-align: center;
   color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .img-card {
@@ -92,7 +90,8 @@ body {
   }
 }
 
-.navegacion button {
+.navegacion button,
+.busqueda button {
   border-radius: 15px;
   background-color: #2050c7;
   color: #fff;
@@ -102,7 +101,8 @@ body {
   transition: background-color 0.3s;
 }
 
-.navegacion button:hover {
+.navegacion button:hover,
+.busqueda button:hover {
   background-color: #000;
   color: #fff;
 }
@@ -120,4 +120,22 @@ body {
 li {
   list-style: none;
   padding: 10px;
+}
+
+.busqueda {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+  padding: 10px;
+  gap: 10px;
+}
+
+.busqueda input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  margin-right: 10px;
 }
