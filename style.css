@@ -1,0 +1,106 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  color: #222;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #3b4cca;
+}
+
+.busqueda {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.title-card {
+  background: #f6f8fc;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(59, 76, 202, 0.08);
+  padding: 20px;
+  min-width: 260px;
+  max-width: 320px;
+  text-align: center;
+}
+
+.img-card {
+  margin-bottom: 16px;
+}
+
+.estadisticas {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.movimientos {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.navegacion {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+  .card-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .title {
+    font-size: 1.4rem;
+  }
+}
+
+.navegacion button {
+  border-radius: 15px;
+  background-color: #3b4cca;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navegacion button:hover {
+  background-color: #2a2e8a;
+}
