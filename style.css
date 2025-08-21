@@ -27,7 +27,7 @@ body {
   margin-bottom: 32px;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #3b4cca;
+  color: #bfa100;
 }
 
 .busqueda {
@@ -39,19 +39,20 @@ body {
 
 .card-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 24px;
   justify-content: center;
+  width: 100%;
+  min-width: 400px;
 }
 
 .title-card {
-  background: #f6f8fc;
+  background: linear-gradient(135deg, #4f8cff 0%, #2050c7 100%);
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(59, 76, 202, 0.08);
   padding: 20px;
-  min-width: 260px;
-  max-width: 320px;
   text-align: center;
+  color: #fff;
 }
 
 .img-card {
@@ -93,7 +94,7 @@ body {
 
 .navegacion button {
   border-radius: 15px;
-  background-color: #3b4cca;
+  background-color: #2050c7;
   color: #fff;
   border: none;
   padding: 10px 16px;
@@ -102,5 +103,21 @@ body {
 }
 
 .navegacion button:hover {
-  background-color: #2a2e8a;
+  background-color: #000;
+  color: #fff;
+}
+
+.informacion {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(59, 76, 202, 0.08);
+  min-width: 400px;
+}
+
+li {
+  list-style: none;
+  padding: 10px;
 }
