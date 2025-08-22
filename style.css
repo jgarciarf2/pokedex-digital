@@ -6,11 +6,19 @@
 }
 
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   min-height: 100vh;
   color: #222;
   line-height: 1.6;
+}
+
+p,
+button,
+h1,
+h2,
+h3 {
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
 }
 
 .container {
@@ -59,7 +67,16 @@ body {
 }
 
 .img-card {
-  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-card img {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  display: block;
 }
 
 .estadisticas {
@@ -98,8 +115,8 @@ body {
 .navegacion button,
 .busqueda button {
   border-radius: 15px;
-  background-color: #2050c7;
-  color: #fff;
+  background-color: #ffb300;
+  color: #000;
   border: none;
   padding: 10px 16px;
   cursor: pointer;
@@ -119,7 +136,22 @@ body {
   margin: 0 auto;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(59, 76, 202, 0.08);
-  min-width: 400px;
+  width: 100%;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.estadisticas,
+.movimientos {
+  width: 100%;
+}
+
+.subtitulo {
+  border-bottom: 2px solid #2050c7;
+  height: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  color: #2050c7;
 }
 
 li {
@@ -130,17 +162,58 @@ li {
 .busqueda {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: stretch;
   align-items: center;
   margin-bottom: 32px;
   padding: 10px;
   gap: 10px;
+  box-shadow: 0 2px 8px rgba(59, 76, 202, 0.2);
+  border-radius: 15px;
+}
+
+.etiquetas {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+.etiquetas span {
+  display: inline-block;
+  background: #f6f8fc;
+  color: #2050c7;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid #2050c7;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.etiquetas span:hover {
+  background: #2050c7;
+  color: #fff;
+}
+
+.campo-buscar {
+  flex: 1 1 0%;
+  display: flex;
 }
 
 .busqueda input {
-  flex: 1;
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 15px;
-  margin-right: 10px;
+  margin-right: 0;
+  font-size: 1rem;
+}
+
+.boton-buscar,
+.boton-aleatorio {
+  flex-shrink: 0;
 }
