@@ -1,3 +1,11 @@
+.id-pokemon {
+  margin-top: 6px;
+  font-size: 1.1rem;
+  color: #ffe066;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px #2050c7;
+}
 /* Reset básico */
 * {
   margin: 0;
