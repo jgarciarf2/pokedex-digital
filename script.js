@@ -56,7 +56,7 @@ async function fetchPokemon(pokemon) {
 
 // Función que recibe el JSON y actualiza cada sección 
 function renderPokemon(p) {
-    imagen.src = p.sprites.front_default;
+    imagen.src = p.sprites.other['official-artwork'].front_default || p.sprites.front_default;
     // Actualiza solo el nombre en el title-card
     const nombre = p.name.charAt(0).toUpperCase() + p.name.slice(1);
     if (titulo.querySelector('p')) {
