@@ -7,13 +7,22 @@ const imagen = document.getElementById('img-card');
 const titulo = document.getElementById('title-card');
 const idPokemon = document.getElementById('id-pokemon');
 const movimiento = document.getElementById('movimientos');
+const portada = document.getElementById('portada');
+const cardContainer = document.getElementById('card-container');
 
 let currentId = 1; // ID del Pokémon actual, comienza en 1
+
+// Mostrar portada y ocultar tarjeta al inicio
+window.addEventListener('DOMContentLoaded', () => {
+    portada.style.display = 'flex';
+    cardContainer.style.display = 'none';
+});
 
 // Boton de búsqueda
 botonBuscar.addEventListener('click', () => {
     const pokemon = campoBuscar.value.toLowerCase();
     if (!pokemon) return alert('Por favor ingresa el nombre de un Pokémon');
+    mostrarTarjeta();
     fetchPokemon(pokemon);
     campoBuscar.value = '';
 });
@@ -21,6 +30,7 @@ botonBuscar.addEventListener('click', () => {
 // Botón de Aleatorio
 botonAleatorio.addEventListener('click', () => {
     const randomId = Math.floor(Math.random() * 898) + 1; // hasta generación 8
+    mostrarTarjeta();
     fetchPokemon(randomId);
 });
 
@@ -37,6 +47,11 @@ botonSiguiente.addEventListener('click', () => {
     currentId++;
     fetchPokemon(currentId);
 });
+
+function mostrarTarjeta() {
+    portada.style.display = 'none';
+    cardContainer.style.display = 'flex';
+}
 
 // Función que hace petición a la PokeAPI
 async function fetchPokemon(pokemon) {

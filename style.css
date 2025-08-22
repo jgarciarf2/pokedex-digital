@@ -1,3 +1,43 @@
+/* Portada de bienvenida */
+.portada {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, #e3eaff 0%, #fff 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(32, 80, 199, 0.08);
+  padding: 36px 18px 28px 18px;
+  animation: fadeIn 1s;
+}
+.portada-svg {
+  margin-bottom: 18px;
+}
+.portada h1 {
+  font-size: 2.1rem;
+  color: #2050c7;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+.portada-desc {
+  color: #444;
+  font-size: 1.15rem;
+  text-align: center;
+  margin-bottom: 0;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .id-pokemon {
   margin-top: 6px;
   font-size: 1.1rem;
