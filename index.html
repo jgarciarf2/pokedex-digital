@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Fuente Poppins -->
@@ -20,13 +19,13 @@
 
         <div class="busqueda">
             <div class="campo-buscar">
-                <input type="text" id="search" placeholder="Buscar Pokemon...">
+                <input type="text" id="campo-buscar" placeholder="Buscar Pokemon...">
             </div>
             <div class="boton-buscar">
-                <button id="search-button">Buscar</button>
+                <button id="boton-buscar">Buscar</button>
             </div>
             <div class="boton-aleatorio">
-                <button>Aleatorio</button>
+                <button id="boton-aleatorio">Aleatorio</button>
             </div>
             <div class="etiquetas">
                 <span>Todos</span>
@@ -42,17 +41,20 @@
             </div>
         </div>
         <div class="card-container">
-            <div class="title-card">
+            <div class="title-card" id="title-card">
                 <p>Pokemon</p>
             </div>
+            <div class="id-pokemon" id="id-pokemon">
+                <p>Id</p>
+            </div>
             <div class="img-card">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+                <img id="img-card" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
                     alt="img-prueba">
             </div>
             <div class="informacion">
                 <div class="estadisticas">
                     <p class="subtitulo">Estadísticas</p>
-                    <ul>
+                    <ul id="estadisticas">
                         <li>Fuerza: </li>
                         <li>Defensa: </li>
                         <li>Velocidad: </li>
@@ -60,7 +62,7 @@
                 </div>
                 <div class="movimientos">
                     <p class="subtitulo">Movimientos</p>
-                    <ul>
+                    <ul id="movimientos">
                         <li>Movimiento 1</li>
                         <li>Movimiento 2</li>
                         <li>Movimiento 3</li>
@@ -68,11 +70,12 @@
                 </div>
             </div>
             <div class="navegacion">
-                <button>Atras </button>
-                <button>Siguiente</button></span>
+                <button id="boton-atras">Atras</button>
+                <button id="boton-siguiente">Siguiente</button>
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 
 </html></svg>
