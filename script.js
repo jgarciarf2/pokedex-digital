@@ -10,6 +10,7 @@ const movimiento = document.getElementById('movimientos');
 const portada = document.getElementById('portada');
 const cardContainer = document.getElementById('card-container');
 const etiquetas = document.getElementById('etiquetas');
+const estadisticas = document.getElementById('estadisticas');
 
 let currentId = 1; // ID del Pokémon actual, comienza en 1
 
@@ -34,8 +35,6 @@ async function fetchByType(type) {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    
-    // data.pokemon es un array de { pokemon: { name, url } }
     const lista = data.pokemon;
     
     // Ejemplo: mostrar uno aleatorio de ese tipo
@@ -122,15 +121,57 @@ function renderPokemon(p) {
         idPokemon.textContent = `#${p.id.toString().padStart(3, '0')}`;
     }
 
-    // Limpiar movimientos previos
-    movimiento.innerHTML = '';
+    mostrarEstadisticas(p.stats);
+    getMoves(p.name);
+}
 
-    // Mostrar movimientos
-    p.moves.slice(0, 5).forEach(mov => {
-        const li = document.createElement('li');
-        li.textContent = mov.move.name;
-        movimiento.appendChild(li);
-    });
+async function getMoves(pokemonName) {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+  const data = await response.json();
+
+  const movesContainer = document.getElementById("movimientos");
+  movesContainer.innerHTML = "";
+
+  const moves = data.moves.slice(0, 4);
+
+  for (let moveInfo of moves) {
+    const moveResponse = await fetch(moveInfo.move.url);
+    const moveData = await moveResponse.json();
+
+    const moveDiv = document.createElement("div");
+    moveDiv.classList.add("move-card");
+
+    moveDiv.innerHTML = `
+      <h3>${moveData.name.charAt(0).toUpperCase() + moveData.name.slice(1)}</h3>
+      <p>
+        Tipo: ${moveData.type.name.charAt(0).toUpperCase() + moveData.type.name.slice(1)} | 
+        Potencia: ${moveData.power ?? "No aplica"} | 
+        Precisión: ${moveData.accuracy ?? "No aplica"}
+      </p>
+    `;
+    movesContainer.appendChild(moveDiv);
+  }
+}
+
+
+function mostrarEstadisticas(stats) {
+  const traducciones = {
+    hp: 'Vida',
+    attack: 'Ataque',
+    defense: 'Defensa',
+    'special-attack': 'Ataque Esp.',
+    'special-defense': 'Defensa Esp.',
+    speed: 'Velocidad'
+  };
+  const estadisticasUl = document.getElementById('estadisticas');
+  estadisticasUl.innerHTML = '';
+  stats.forEach(stat => {
+    const nombre = traducciones[stat.stat.name] || stat.stat.name;
+    const valor = stat.base_stat;
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="nombre-stat">${nombre}</span><span class="valor-stat">${valor}</span>`;
+    estadisticasUl.appendChild(li);
+  });
 }
 
 function clearDisplay() {

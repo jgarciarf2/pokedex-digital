@@ -139,17 +139,39 @@ h3 {
   display: block;
 }
 
-.estadisticas {
-  margin-top: 12px;
-  font-size: 1rem;
+#estadisticas li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nombre-stat {
+  font-weight: 500;
+}
+
+.valor-stat {
+  font-weight: 500;
+  color: #2050c7;
+}
+
+.move-card {
+  border: 1px solid #ddd;
+  padding: 8px;
+  margin: 6px 0;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+.move-card h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+}
+.move-card p {
+  margin: 0;
+  font-size: 14px;
   color: #555;
 }
 
-.movimientos {
-  margin-top: 10px;
-  font-size: 0.95rem;
-  color: #666;
-}
 
 .navegacion {
   margin-top: 18px;
