@@ -9,8 +9,44 @@ const idPokemon = document.getElementById('id-pokemon');
 const movimiento = document.getElementById('movimientos');
 const portada = document.getElementById('portada');
 const cardContainer = document.getElementById('card-container');
+const etiquetas = document.getElementById('etiquetas');
 
 let currentId = 1; // ID del Pokémon actual, comienza en 1
+
+// Botón para las etiquetas 
+etiquetas.addEventListener('click', async (e) => {
+  if (e.target.tagName === 'SPAN') {
+    const type = e.target.getAttribute('data-type');
+    mostrarTarjeta();
+    if (type === "all") {
+      // Mostrar un Pokémon aleatorio si eliges "Todos"
+      const randomId = Math.floor(Math.random() * 898) + 1;
+      fetchPokemon(randomId);
+    } else {
+      fetchByType(type);
+    }
+  }
+});
+
+// Función para obtener Pokémon por tipo
+async function fetchByType(type) {
+  const url = `https://pokeapi.co/api/v2/type/${type}`;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    
+    // data.pokemon es un array de { pokemon: { name, url } }
+    const lista = data.pokemon;
+    
+    // Ejemplo: mostrar uno aleatorio de ese tipo
+    const randomIndex = Math.floor(Math.random() * lista.length);
+    const pokeName = lista[randomIndex].pokemon.name;
+    fetchPokemon(pokeName);
+  } catch (err) {
+    console.error("Error cargando tipo:", err);
+  }
+}
+
 
 // Mostrar portada y ocultar tarjeta al inicio
 window.addEventListener('DOMContentLoaded', () => {
