@@ -12,6 +12,19 @@
 <body>
 
     <div class="container">
+        <!-- Loader -->
+        <div class="loader-container" id="loader" style="display: none;">
+            <div class="loader">
+                <div class="pokeball-loader">
+                    <div class="pokeball-top"></div>
+                    <div class="pokeball-bottom"></div>
+                    <div class="pokeball-center"></div>
+                </div>
+                <p class="loader-text">Buscando Pokémon...</p>
+            </div>
+        </div>
+
+        <!-- Portada -->
         <div class="portada" id="portada">
             <div class="portada-svg">
                 <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,11 +40,13 @@
                 aleatorio para comenzar!</p>
         </div>
 
+        <!-- Título -->
         <div class="title">
             <p>Pokédex Digital</p>
             <span>Descubre el mundo de los Pokémon</span>
         </div>
 
+        <!-- Busqueda -->
         <div class="busqueda">
             <div class="campo-buscar">
                 <input type="text" id="campo-buscar" placeholder="Buscar Pokemon por nombre o ID">
@@ -71,20 +86,12 @@
                     <div class="estadisticas">
                         <p class="subtitulo">Estadísticas</p>
                         <ul id="estadisticas">
-                            <li>Vida</li>
-                            <li>Ataque</li>
-                            <li>Defensa</li>
-                            <li>At. Especial</li>
-                            <li>Def. Especial</li>
-                            <li>Velocidad</li>
+
                         </ul>
                     </div>
                     <div class="movimientos">
                         <p class="subtitulo">Movimientos</p>
                         <ul id="movimientos">
-                            <li>Movimiento 1</li>
-                            <li>Movimiento 2</li>
-                            <li>Movimiento 3</li>
                         </ul>
                     </div>
                 </div>

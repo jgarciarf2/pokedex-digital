@@ -11,20 +11,35 @@ const portada = document.getElementById('portada');
 const cardContainer = document.getElementById('card-container');
 const etiquetas = document.getElementById('etiquetas');
 const estadisticas = document.getElementById('estadisticas');
+const loader = document.getElementById('loader');
 
 let currentId = 1; // ID del Pokémon actual, comienza en 1
+
+// Funciones para mostrar/ocultar loader
+function showLoader() {
+  loader.style.display = 'flex';
+}
+
+function hideLoader() {
+  loader.style.display = 'none';
+}
 
 // Botón para las etiquetas 
 etiquetas.addEventListener('click', async (e) => {
   if (e.target.tagName === 'SPAN') {
     const type = e.target.getAttribute('data-type');
+    showLoader();
     mostrarTarjeta();
-    if (type === "all") {
-      // Mostrar un Pokémon aleatorio si eliges "Todos"
-      const randomId = Math.floor(Math.random() * 898) + 1;
-      fetchPokemon(randomId);
-    } else {
-      fetchByType(type);
+    try {
+      if (type === "all") {
+        // Mostrar un Pokémon aleatorio si eliges "Aleatorio"
+        const randomId = Math.floor(Math.random() * 898) + 1;
+        await fetchPokemon(randomId);
+      } else {
+        await fetchByType(type);
+      }
+    } finally {
+      hideLoader();
     }
   }
 });
@@ -37,10 +52,9 @@ async function fetchByType(type) {
     const data = await res.json();
     const lista = data.pokemon;
 
-    // Ejemplo: mostrar uno aleatorio de ese tipo
     const randomIndex = Math.floor(Math.random() * lista.length);
     const pokeName = lista[randomIndex].pokemon.name;
-    fetchPokemon(pokeName);
+    await fetchPokemon(pokeName);
   } catch (err) {
     console.error("Error cargando tipo:", err);
   }
@@ -57,30 +71,46 @@ window.addEventListener('DOMContentLoaded', () => {
 botonBuscar.addEventListener('click', () => {
   const pokemon = campoBuscar.value.toLowerCase();
   if (!pokemon) return alert('Por favor ingresa el nombre de un Pokémon');
+  showLoader();
   mostrarTarjeta();
-  fetchPokemon(pokemon);
+  fetchPokemon(pokemon).finally(() => hideLoader());
   campoBuscar.value = '';
+});
+
+// Enter en el campo de búsqueda
+campoBuscar.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const pokemon = campoBuscar.value.toLowerCase();
+    if (!pokemon) return alert('Por favor ingresa el nombre de un Pokémon');
+    showLoader();
+    mostrarTarjeta();
+    fetchPokemon(pokemon).finally(() => hideLoader());
+    campoBuscar.value = '';
+  }
 });
 
 // Botón de Aleatorio
 botonAleatorio.addEventListener('click', () => {
   const randomId = Math.floor(Math.random() * 898) + 1; // hasta generación 8
+  showLoader();
   mostrarTarjeta();
-  fetchPokemon(randomId);
+  fetchPokemon(randomId).finally(() => hideLoader());
 });
 
 // Botón Atras
 botonAtras.addEventListener('click', () => {
   if (currentId > 1) {
     currentId--;
-    fetchPokemon(currentId);
+    showLoader();
+    fetchPokemon(currentId).finally(() => hideLoader());
   }
 });
 
 // Botón Siguiente
 botonSiguiente.addEventListener('click', () => {
   currentId++;
-  fetchPokemon(currentId);
+  showLoader();
+  fetchPokemon(currentId).finally(() => hideLoader());
 });
 
 function mostrarTarjeta() {
