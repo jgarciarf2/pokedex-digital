@@ -145,6 +145,26 @@ async function getMoves(pokemonName) {
     const powerPercent = moveData.power ? Math.min((moveData.power / 150) * 100, 100) : 0;
     const accuracyPercent = moveData.accuracy ? moveData.accuracy : 0;
 
+    // Determinar clases de color para potencia
+    let powerColorClass = '';
+    if (moveData.power && moveData.power <= 49) {
+      powerColorClass = 'low';
+    } else if (moveData.power && moveData.power >= 50 && moveData.power <= 70) {
+      powerColorClass = 'medium';
+    } else if (moveData.power && moveData.power >= 71) {
+      powerColorClass = 'high';
+    }
+
+    // Determinar clases de color para precisión
+    let accuracyColorClass = '';
+    if (moveData.accuracy && moveData.accuracy <= 49) {
+      accuracyColorClass = 'low';
+    } else if (moveData.accuracy && moveData.accuracy >= 50 && moveData.accuracy <= 70) {
+      accuracyColorClass = 'medium';
+    } else if (moveData.accuracy && moveData.accuracy >= 71) {
+      accuracyColorClass = 'high';
+    }
+
     moveDiv.innerHTML = `
       <div class="move-type">${moveData.type.name.charAt(0).toUpperCase() + moveData.type.name.slice(1)}</div>
       <h3>${moveData.name.charAt(0).toUpperCase() + moveData.name.slice(1).replace(/-/g, ' ')}</h3>
@@ -152,14 +172,14 @@ async function getMoves(pokemonName) {
         <div class="move-stat-row">
           <span class="move-stat-name">Potencia:</span>
           <div class="move-stat-bar">
-            <div class="move-stat-fill power-fill" style="width: ${powerPercent}%"></div>
+            <div class="move-stat-fill power-fill ${powerColorClass}" style="width: ${powerPercent}%"></div>
           </div>
           <span class="move-stat-value">${moveData.power ?? "—"}</span>
         </div>
         <div class="move-stat-row">
           <span class="move-stat-name">Precisión:</span>
           <div class="move-stat-bar">
-            <div class="move-stat-fill accuracy-fill" style="width: ${accuracyPercent}%"></div>
+            <div class="move-stat-fill accuracy-fill ${accuracyColorClass}" style="width: ${accuracyPercent}%"></div>
           </div>
           <span class="move-stat-value">${moveData.accuracy ?? "—"}${moveData.accuracy ? '%' : ''}</span>
         </div>
@@ -186,12 +206,22 @@ function mostrarEstadisticas(stats) {
     const valor = stat.base_stat;
     const porcentaje = Math.min((valor / 200) * 100, 100); // Max stat ~200
 
+    // Determinar la clase de color según el valor
+    let colorClass = '';
+    if (valor <= 49) {
+      colorClass = 'low';
+    } else if (valor >= 50 && valor <= 70) {
+      colorClass = 'medium';
+    } else if (valor >= 71) {
+      colorClass = 'high';
+    }
+
     const li = document.createElement('li');
     li.innerHTML = `
       <span class="nombre-stat">${nombre}</span>
       <div class="stat-bar-container">
         <div class="stat-bar">
-          <div class="stat-bar-fill" style="width: ${porcentaje}%"></div>
+          <div class="stat-bar-fill ${colorClass}" style="width: ${porcentaje}%"></div>
         </div>
         <span class="valor-stat">${valor}</span>
       </div>

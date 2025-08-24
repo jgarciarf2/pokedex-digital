@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Fuente Poppins -->
+    <title>Pokédex</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -15,17 +14,15 @@
     <div class="container">
         <div class="portada" id="portada">
             <div class="portada-svg">
-                <!-- SVG Pokédex simple -->
                 <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="10" y="20" width="100" height="80" rx="18" fill="#e3eaff" stroke="#2050c7"
-                        stroke-width="4" />
-                    <circle cx="35" cy="40" r="10" fill="#ff5252" stroke="#2050c7" stroke-width="3" />
-                    <rect x="60" y="35" width="40" height="10" rx="5" fill="#2050c7" />
-                    <circle cx="60" cy="80" r="18" fill="#fff" stroke="#2050c7" stroke-width="3" />
-                    <circle cx="60" cy="80" r="10" fill="#ffe066" stroke="#2050c7" stroke-width="2" />
+                    <rect class="svg-body" x="10" y="20" width="100" height="80" rx="18" />
+                    <circle class="svg-light" cx="35" cy="40" r="10" />
+                    <rect class="svg-screen" x="60" y="35" width="40" height="10" rx="5" />
+                    <circle class="svg-button-outer" cx="60" cy="80" r="18" />
+                    <circle class="svg-button-inner" cx="60" cy="80" r="10" />
                 </svg>
             </div>
-            <h1>¡Bienvenido a la Pokédex Digital!</h1>
+            <h1>¡Bienvenid@!</h1>
             <p class="portada-desc">Busca tu Pokémon favorito o explora aleatoriamente.<br>¡Haz clic en buscar o
                 aleatorio para comenzar!</p>
         </div>
@@ -39,11 +36,13 @@
             <div class="campo-buscar">
                 <input type="text" id="campo-buscar" placeholder="Buscar Pokemon por nombre o ID">
             </div>
-            <div class="boton-buscar">
-                <button id="boton-buscar">Buscar</button>
-            </div>
-            <div class="boton-aleatorio">
-                <button id="boton-aleatorio">Aleatorio</button>
+            <div class="botones-busqueda">
+                <div class="boton-buscar">
+                    <button id="boton-buscar">Buscar</button>
+                </div>
+                <div class="boton-aleatorio">
+                    <button id="boton-aleatorio">Aleatorio</button>
+                </div>
             </div>
             <div class="etiquetas" id="etiquetas">
                 <span data-type="all">Todos</span>
