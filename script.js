@@ -12,6 +12,7 @@ const cardContainer = document.getElementById('card-container');
 const etiquetas = document.getElementById('etiquetas');
 const estadisticas = document.getElementById('estadisticas');
 const loader = document.getElementById('loader');
+const errorMessage = document.getElementById('error-message');
 
 let currentId = 1; // ID del Pokémon actual, comienza en 1
 
@@ -22,6 +23,16 @@ function showLoader() {
 
 function hideLoader() {
   loader.style.display = 'none';
+}
+
+// Funciones para mostrar/ocultar mensaje de error
+function showError() {
+  errorMessage.style.display = 'block';
+  cardContainer.style.display = 'none';
+}
+
+function hideError() {
+  errorMessage.style.display = 'none';
 }
 
 // Botón para las etiquetas 
@@ -69,10 +80,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Boton de búsqueda
 botonBuscar.addEventListener('click', () => {
-  const pokemon = campoBuscar.value.toLowerCase();
+  const pokemon = campoBuscar.value.toLowerCase().trim();
   if (!pokemon) return alert('Por favor ingresa el nombre de un Pokémon');
   showLoader();
-  mostrarTarjeta();
+  hideError(); // Ocultar mensaje de error previo
   fetchPokemon(pokemon).finally(() => hideLoader());
   campoBuscar.value = '';
 });
@@ -80,10 +91,10 @@ botonBuscar.addEventListener('click', () => {
 // Enter en el campo de búsqueda
 campoBuscar.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
-    const pokemon = campoBuscar.value.toLowerCase();
+    const pokemon = campoBuscar.value.toLowerCase().trim();
     if (!pokemon) return alert('Por favor ingresa el nombre de un Pokémon');
     showLoader();
-    mostrarTarjeta();
+    hideError(); // Ocultar mensaje de error previo
     fetchPokemon(pokemon).finally(() => hideLoader());
     campoBuscar.value = '';
   }
@@ -116,6 +127,7 @@ botonSiguiente.addEventListener('click', () => {
 function mostrarTarjeta() {
   portada.style.display = 'none';
   cardContainer.style.display = 'flex';
+  hideError();
 }
 
 // Función que hace petición a la PokeAPI
@@ -127,9 +139,10 @@ async function fetchPokemon(pokemon) {
     const data = await res.json();
     currentId = data.id;
     renderPokemon(data);
+    hideError(); // Ocultar error si la búsqueda es exitosa
   } catch (err) {
-    clearDisplay();
-    alert('Pokémon no encontrado. Verifica el nombre o ID.');
+    portada.style.display = 'none';
+    showError();
     console.error(err);
   }
 }
